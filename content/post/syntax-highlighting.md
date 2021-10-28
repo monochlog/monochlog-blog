@@ -5,7 +5,7 @@ lastmod: 2018-11-05T16:01:23+08:00
 draft: true
 tags: ["preview", "Syntax Highlighting", "tag-5"]
 categories: ["Syntax Highlighting"]
-hiddenFromHomePage: true
+
 toc: false
 
 ---

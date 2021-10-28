@@ -5,7 +5,7 @@ lastmod: 2018-03-08T22:01:19+08:00
 draft: true
 author: '<a href="https://halu.lu" target="_blank">Halulu</a>'
 
-hiddenFromHomePage: true
+#hiddenFromHomePage: true
 ---
 
 This post is hidden from the home page.
