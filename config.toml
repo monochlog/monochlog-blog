@@ -18,7 +18,7 @@ pygmentsCodefencesGuessSyntax = true
 
 hasCJKLanguage = true     # has chinese/japanese/korean ? 
 paginate = 5                                              
-disqusShortname = ""      # disqus_shortname
+disqusShortname = "https-monochlog-github-io-monochlog-blog"      # disqus_shortname
 googleAnalytics = "UA-132831922-2"      # UA-XXXXXXXX-X
 copyright = ""            # default: author.name ↓        
 
@@ -37,17 +37,17 @@ copyright = ""            # default: author.name ↓
   url = "/"
 [[menu.main]]
   name = "Archives"
-  weight = 30
+  weight = 50
   identifier = "archives"
   url = "/post/"
 [[menu.main]]
   name = "Categories"
-  weight = 40
+  weight = 30
   identifier = "categories"
   url = "/categories/"
 [[menu.main]]
   name = "Tags"
-  weight = 50
+  weight = 40
   identifier = "tags"
   url = "/tags/"
 
