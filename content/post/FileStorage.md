@@ -5,8 +5,8 @@ lastmod: 2021-10-28T23:28:29+09:00
 draft: false
 keywords: []
 description: ""
-tags: []
-categories: []
+tags: ["ストレージ"]
+categories: ["ITリテラシ"]
 author: "Mono"
 
 # You can also close(false) or open(true) something for this content.
