@@ -5,34 +5,6 @@
     <link>https://monochlog.github.io/monochlog-blog/tags/</link>
     <description>Recent content in Tags on Monochlog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Tue, 30 Aug 2011 16:01:23 +0800</lastBuildDate><atom:link href="https://monochlog.github.io/monochlog-blog/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>preview</title>
-      <link>https://monochlog.github.io/monochlog-blog/tags/preview/</link>
-      <pubDate>Tue, 30 Aug 2011 16:01:23 +0800</pubDate>
-      
-      <guid>https://monochlog.github.io/monochlog-blog/tags/preview/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Syntax Highlighting</title>
-      <link>https://monochlog.github.io/monochlog-blog/tags/syntax-highlighting/</link>
-      <pubDate>Tue, 30 Aug 2011 16:01:23 +0800</pubDate>
-      
-      <guid>https://monochlog.github.io/monochlog-blog/tags/syntax-highlighting/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tag-5</title>
-      <link>https://monochlog.github.io/monochlog-blog/tags/tag-5/</link>
-      <pubDate>Tue, 30 Aug 2011 16:01:23 +0800</pubDate>
-      
-      <guid>https://monochlog.github.io/monochlog-blog/tags/tag-5/</guid>
-      <description></description>
-    </item>
-    
+    <language>en</language><atom:link href="https://monochlog.github.io/monochlog-blog/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
