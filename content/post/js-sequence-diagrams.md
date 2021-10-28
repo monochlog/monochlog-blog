@@ -1,7 +1,7 @@
 ---
 title: "JS Sequence Diagrams"
 date: 2015-03-04T21:57:45+08:00
-draft: true
+draft: false
 sequenceDiagrams: 
   enable: true
   options: "{theme: 'hand'}"
