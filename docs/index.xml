@@ -5,7 +5,8 @@
     <link>https://monochlog.github.io/monochlog-blog/</link>
     <description>Recent content on Monochlog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="https://monochlog.github.io/monochlog-blog/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Thu, 28 Oct 2021 23:28:29 +0900</lastBuildDate><atom:link href="https://monochlog.github.io/monochlog-blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://monochlog.github.io/monochlog-blog/about/</link>
@@ -15,6 +16,15 @@
       <description>Hugo is a static site engine written in Go.
 It makes use of a variety of open source projects including:
  Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
+    </item>
+    
+    <item>
+      <title>FileStorage</title>
+      <link>https://monochlog.github.io/monochlog-blog/post/filestorage/</link>
+      <pubDate>Thu, 28 Oct 2021 23:28:29 +0900</pubDate>
+      
+      <guid>https://monochlog.github.io/monochlog-blog/post/filestorage/</guid>
+      <description></description>
     </item>
     
   </channel>

@@ -1,8 +1,8 @@
 ---
-title: "{{ replace .TranslationBaseName "-" " " | title }}"
-date: {{ .Date }}
-lastmod: {{ .Date }}
-draft: true
+title: "FileStorage"
+date: 2021-10-28T23:28:29+09:00
+lastmod: 2021-10-28T23:28:29+09:00
+draft: false
 keywords: []
 description: ""
 tags: []
@@ -41,3 +41,4 @@ sequenceDiagrams:
 ---
 
 <!--more-->
+test
