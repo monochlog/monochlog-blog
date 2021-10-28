@@ -1,5 +1,5 @@
 ---
-title: "FileStorage"
+title: "ファイルストレージ"
 date: 2021-10-28T23:28:29+09:00
 lastmod: 2021-10-28T23:28:29+09:00
 draft: false
