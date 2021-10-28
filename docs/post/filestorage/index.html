@@ -49,7 +49,7 @@
 <meta itemprop="name" content="ファイルストレージ">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-10-28T23:28:29+09:00" />
 <meta itemprop="dateModified" content="2021-10-28T23:28:29+09:00" />
-<meta itemprop="wordCount" content="1">
+<meta itemprop="wordCount" content="3069">
 <meta itemprop="keywords" content="ストレージ," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ファイルストレージ"/>
 <meta name="twitter:description" content=""/>
@@ -146,7 +146,126 @@
 
     
     <div class="post-content">
-      <p>test</p>
+      <h2 id="1目的">1.目的</h2>
+<p>クラウドが普及して、もう一般的になっています。その中でストレージのいわゆる種類がいくつかあります。
+ストレージの種類とは、オブジェクト、ファイル、ブロックなどのストレージのことを扱います。
+また、多くの場合、クラウドはクラウド、オンプレはオンプレで整理されがちなので、その辺をまとめて置きたいと思います。</p>
+<h2 id="ストレージの種類">ストレージの種類</h2>
+<p>先に結論をまとめましょう。今回の整理範囲はこんな感じ。</p>
+<div  align="center"><a  target="_blank" title="WS000000" href="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/b/5/b585dc36.jpg"><img  class="pict" hspace="5" alt="WS000000" border="0" height="88" width="480" src="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/b/5/b585dc36-s.jpg"></a></div>  
+<div  align="center"><a  href="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/a/b/ab89e902.jpg" title="WS000001" target="_blank"><img  src="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/a/b/ab89e902-s.jpg" width="480" height="270" border="0" alt="WS000001" hspace="5" class="pict"></a></div>
+<p>では行きましょう。</p>
+<h2 id="ローカルストレージ">ローカルストレージ</h2>
+<h3 id="概要">概要</h3>
+<p>ローカルストレージとは、そのままになりますが、ローカルにあるストレージです。
+そのまんまでが、言い換えると「CPUと同じ筐体などに設置されたり、物理的に距離の近い」ストレージと言えます。</p>
+<p>PCであれば分かりやすく、PC内に入っているHDD,SSDのことですね。基本的には自分（OSから見て自分自身）が利用するためのデータ領域です。
+このようなストレージをDAS（Direct Attached Storage）といいます。</p>
+<h3 id="使用イメージ">使用イメージ</h3>
+<div  align="center"><a  href="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/8/0/80cdace5.jpg" title="WS000002" target="_blank"><img  src="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/8/0/80cdace5-s.jpg" width="480" height="297" border="0" alt="WS000002" hspace="5" class="pict"></a></div>
+<h3 id="データ領域のアクセス方法プロトコルとデータの単位">データ領域のアクセス方法（プロトコル）とデータの単位</h3>
+<p>データ領域、つまりHDDやSSDへのアクセス方法（プロトコル）はACHIやNVMeといった規格があります。
+その時のデータの受け渡しのサイズは4KBであることが多いです（特にLinux）。Windowsもクラスターサイズという表現になりますが4KBでアクセスすることが多いです。</p>
+<p>このようにブロック単位でアクセスするのでローカルストレージも分類的にはブロックストレージになります。</p>
+<h2 id="ブロックストレージ">ブロックストレージ</h2>
+<h3 id="概要-1">概要</h3>
+<p>ブロックストレージとは、OSがブロック単位でアクセスするストレージです。</p>
+<p>と言ってしまうと、先ほどのローカルストレージと違いがないですね。実はその通りで、データのアクセス単位という見方をすると、
+ローカルストレージとは差がありません。
+ただストレージの種類として「ブロックストレージ」という場合は、多くの場合は「SAN(Storage Area Network)」（もしくはそれと同等の仕組み）を指すことが多いです。</p>
+<div  align="center"><a  href="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/a/7/a7b77f22.jpg" title="WS000003" target="_blank"><img  src="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/a/7/a7b77f22-s.jpg" width="480" height="280" border="0" alt="WS000003" hspace="5" class="pict"></a></div>
+<h3 id="データ領域のアクセス方法プロトコルとデータの単位-1">データ領域のアクセス方法（プロトコル）とデータの単位</h3>
+<p>アクセス方法（プロトコル）はiSCSIやFCoE(Fiber Channel over Ethernet)といった規格があります。
+物理的なケーブルの種類の差分はありますが、ブロック単位でのアクセスであるため、ローカルストレージと同等の扱いができます。</p>
+<h3 id="使い道">使い道</h3>
+<p>なぜローカルストレージと分別しているか、というといくつかメリット（もちろんデメリットも）があります。<br />
+<ui>
+<li>メリット</li>
+<ol>
+<li>ディスクを束ねることで管理がしやすい。過不足に応じて再割り当てなどが可能</li>
+<li>NWとは異なる接続（ケーブル）となるため、負荷を分散可能</li>
+<li>OSが直接ファイルシステムを管理することでアクセス速度が速い</li>
+<li>バックアップ対象の集約による効率化や、OS領域のシステムバックアップなどが簡単になる</li>
+</ol>
+<li>デメリット</li>
+<ol>
+<li>NW同等に利用台数が増えるとFC用のスイッチが必要になる。</li>
+<li>OSやハードがSANに対応している必要があり、設定にも専門的な知識が必要</li>
+<li>NASに比べると効果となる。（FC関連が高い）</li>
+</ol>
+</ui></p>
+<p>私の個人的な意見としてはバックアップの効率化、容易化はオンプレにおいてはすごく重要です。</p>
+<p>ローカルディスクしかないサーバを何台もイメージバックアップ用のディスクでブートしLTOに取得する、というような
+マンパワーに依存したシステムを経験すると有難みがすごく分かります。</p>
+<h3 id="補足">補足</h3>
+<p>クラウドでこのような位置づけに該当するものはAWSならEBS、Azureならマネージドディスクと呼ばれます。
+これらは仮想化をされているのでSANと同じものではありませんが、ブロックストレージです。
+仮想化およびサーバから独立しているため、イメージバックアップや割付の変更ができたりとSANのメリット（もしくはそれ以上）の
+恩恵を受けることができます。</p>
+<h2 id="ファイルストレージ">ファイルストレージ</h2>
+<h3 id="概要-2">概要</h3>
+<p>ファイルストレージとは、OSがファイル単位でアクセスするストレージです。そのまんまですね。オブジェクトでも同じことを言います。
+もう少しかみ砕くと、ファイルの読み書きを行う場合に、「ファイル単位」でデータのアクセスが完結する。というイメージです。</p>
+<p>これを具体的に理解するには少しOSの動きを理解する必要があります。
+OSはブロックストレージを「ファイルシステム」として認識しています。「ファイルシステム」が何かというと、
+具体的にはNFTSとか、XFSを指すのですが、イメージでいうと、「この装置はディスクで、容量1TB、使用率は20％」みたいなことが
+分かるということです。
+これは「ストレージの管理は自分である」という風に言えます。</p>
+<p>一方で、ファイルストレージはストレージの管理（物理的な管理）は自分ではない、と言えます。</p>
+<div  align="center"><a  href="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/b/7/b7dbc0cf.jpg" title="WS000004" target="_blank"><img  src="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/b/7/b7dbc0cf-s.jpg" width="480" height="293" border="0" alt="WS000004" hspace="5" class="pict"></a></div>
+<h3 id="データ領域のアクセス方法プロトコルとデータの単位-2">データ領域のアクセス方法（プロトコル）とデータの単位</h3>
+<p>ファイルストレージはアクセスする単位が「ファイル」で、OSが認識できるものは「フォルダ（ディレクトリ）とファイル」しか
+ありません。全体容量や使用率はどれくらいかは分かりません
+（マウント等すればアクセス可能な範囲は見れますが、アクセスできない領域は分かりません）</p>
+<h3 id="使い道-1">使い道</h3>
+<p>主にオンプレではNAS(Network Attached Storage)として構築されます。
+もちろんこれによりメリット、デメリットがあります。
+<ui>
+<li>メリット</li>
+<ol>
+<li>OSがストレージの管理をしなくてよい。（ディスクの不足に対する追加、など）</li>
+<li>NW（TCPIP）で構築するため構築難易度が低い</li>
+<li>SANに比べ安価に構築できる</li>
+</ol>
+<li>デメリット</li>
+<ol>
+<li>性能はNWに依存する</li>
+</ol>
+</ui></p>
+<h2 id="オブジェクトストレージ">オブジェクトストレージ</h2>
+<h3 id="概要-3">概要</h3>
+<p>オブジェクトストレージとは、ファイルなどを「オブジェクト」という単位で扱い、アクセスするストレージです。<br /><br />
+このオブジェクトとは、AWSのS3が始まりのようですが、ファイル＋メタデータ（例えばファイルID）で管理しています。
+このメタデータ（のファイルID）を指定してファイルにアクセスを行います。
+<br /><br />
+これまでのストレージと異なり、ファイルへたどり着くにはメタデータで指定するため、ディレクトリ階層表現は不要で、「フラットな構成」
+が特徴です。
+<br /><br />
+少し仕組みの裏側を記載すると、AWSなどのクラウドの中身では、ブロックストレージでディレクトリ共有しているものが基本です。<br /><br />
+このディレクトリ共有を大量に作成し、仮想的に1つのストレージとして見せている、というイメージを持ってもらえればと思います。<br /><br /><div  align="center"><a  href="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/4/5/4515e375.jpg" title="WS000005" target="_blank"><img  src="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/4/5/4515e375-s.jpg" width="480" height="275" border="0" alt="WS000005" hspace="5" class="pict"></a></div><br /></p>
+<h3 id="データ領域のアクセス方法プロトコルとデータの単位-3">データ領域のアクセス方法（プロトコル）とデータの単位</h3>
+<p>オブジェクトストレージへはアクセスする単位は「オブジェクト」となります。アクセス方法はHTTP(S)であり、いわゆるブラウザからアクセスするか
+アプリケーション(Restful API)などを介して利用します。<br /><br />
+基本的にはアプリケーションがアクセスするものの認識でOKです。<br /><br /></p>
+<h3 id="使い道-2">使い道</h3>
+<p>こちらはオンプレではあまり実装されないです。例えばですが、windowsではDFSを用いて実現することは可能です。<br /><br />
+ただ以下のメリットを損なってしまっていると思います。
+<ui>
+<li>メリット</li>
+<ol>
+<li>OSがストレージの管理をしなくてよい。（ディスクの不足に対する追加、など）</li>
+<li>大容量（PBなど）、大多数ファイルを扱うことができる。</li>
+<li>メタデータのインデックス作成により高速なアクセスが可能</li>
+</ol>
+<li>デメリット</li>
+<ol>
+<li>性能はNWに依存する</li>
+<li>同一オブジェクトを頻繁に更新する処理には不向き</li>
+</ol>
+</ui></p>
+<h2 id="まとめ">まとめ</h2>
+<p>長くなりましたが、ストレージの種類についてアクセス方法やその特徴を整理しました。
+いずれのストレージも一長一短あるため、利用目的に応じたものを活用する用にしましょう。</p>
     </div>
 
     
@@ -185,9 +304,8 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
-      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="https://twitter.com/monochlog" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/monochlog/mono-repo" class="iconfont icon-github" title="github"></a>
   <a href="https://monochlog.github.io/monochlog-blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
