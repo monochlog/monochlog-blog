@@ -9,7 +9,7 @@ comment: false
 
 ![Auther](img/mono.png)  
 Auther:Mono  
-ブログ ホスティング: Github Pages
+ブログ ホスティング: Github Pages  
 ブログ テーマ：Hugo Even  
 Editor：Visual Studio Code  
 
