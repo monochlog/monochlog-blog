@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://monochlog.github.io/monochlog-blog/sitemap.xml

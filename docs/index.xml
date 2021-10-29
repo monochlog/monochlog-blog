@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monochlog</title>
+    <link>https://monochlog.github.io/monochlog-blog/</link>
+    <description>Recent content on Monochlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 28 Oct 2021 23:28:29 +0900</lastBuildDate><atom:link href="https://monochlog.github.io/monochlog-blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Privacy Policy</title>
+      <link>https://monochlog.github.io/monochlog-blog/privacypolicy/</link>
+      <pubDate>Fri, 01 Oct 2021 21:38:52 +0800</pubDate>
+      
+      <guid>https://monochlog.github.io/monochlog-blog/privacypolicy/</guid>
+      <description>当サイトを運営するにあたり、以下のとおりにプライバシーポリシー及び免責事項を定めます。 運営者：Mono ブログURL：https://mono</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://monochlog.github.io/monochlog-blog/about/</link>
+      <pubDate>Fri, 01 Oct 2021 21:38:52 +0800</pubDate>
+      
+      <guid>https://monochlog.github.io/monochlog-blog/about/</guid>
+      <description>Auther:Mono ブログ ホスティング: Github Pages ブログ テーマ：Hugo Even Editor：Visual Studio Code SIerとして公共システムや法人期間システムなどのクリティカ</description>
+    </item>
+    
+    <item>
+      <title>SAN対応自己証明書</title>
+      <link>https://monochlog.github.io/monochlog-blog/post/certification-san/</link>
+      <pubDate>Thu, 28 Oct 2021 23:28:29 +0900</pubDate>
+      
+      <guid>https://monochlog.github.io/monochlog-blog/post/certification-san/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ファイルストレージ</title>
+      <link>https://monochlog.github.io/monochlog-blog/post/filestorage/</link>
+      <pubDate>Wed, 27 Oct 2021 23:28:29 +0900</pubDate>
+      
+      <guid>https://monochlog.github.io/monochlog-blog/post/filestorage/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
