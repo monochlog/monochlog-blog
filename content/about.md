@@ -1,21 +1,21 @@
 ---
 title: "About"
-date: 2017-08-20T21:38:52+08:00
-lastmod: 2017-08-28T21:41:52+08:00
+date: 2021-10-01T21:38:52+08:00
+lastmod: 2021-10-01T21:41:52+08:00
 menu: "main"
 weight: 70
 comment: false
 ---
 
-Hugo is a static site engine written in Go.
+![Auther](img/mono.png)  
+Auther:Mono  
+ブログ ホスティング: Github Pages
+ブログ テーマ：Hugo Even
+Editor：Visual Studio Code
 
+SIerとして公共システムや法人期間システムなどのクリティカルミッションに携わるインフラエンジニア。
 
-It makes use of a variety of open source projects including:
+メインフレーム、オープン系（オンプレ）、クラウドとマルチに携わってきましたが、最近はクラウドが好み。とくにIaC領域。
 
-* [Cobra](https://github.com/spf13/cobra)
-* [Viper](https://github.com/spf13/viper)
-* [J Walter Weatherman](https://github.com/spf13/jWalterWeatherman)
-* [Cast](https://github.com/spf13/cast)
-
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
+情報発信を通じて自分の理解を深める、体系的に整理するという力を磨きたいと思っています。
 
