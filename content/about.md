@@ -7,9 +7,7 @@ weight: 70
 comment: false
 ---
 
-<div align="center">
 ![Auther](../img/mono.png)  
-</div>
 
 Auther:Mono  
 ブログ ホスティング: Github Pages  
