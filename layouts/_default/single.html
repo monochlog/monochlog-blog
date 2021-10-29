@@ -2,7 +2,7 @@
 <article class="post">
   <div class="post-content">
     {{ .Content }}
+    {{ partial "google/display-unit" . }}
   </div>
-  {{ partial "google/display-unit" . }}
 </article>
 {{- end }}
