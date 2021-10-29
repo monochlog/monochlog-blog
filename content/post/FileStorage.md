@@ -65,13 +65,12 @@ sequenceDiagrams:
 ## 3.ローカルストレージ
 ### 概要
 ローカルストレージとは、そのままになりますが、ローカルにあるストレージです。
-そのまんまでが、言い換えると「CPUと同じ筐体などに設置されたり、物理的に距離の近い」ストレージと言えます。
+言い換えると「CPUと同じ筐体などに設置されたり、物理的に距離の近い」ストレージと言えます。
 
-PCであれば分かりやすく、PC内に入っているHDD,SSDのことですね。基本的には自分（OSから見て自分自身）が利用するためのデータ領域です。
-このようなストレージをDAS（Direct Attached Storage）といいます。
+PCであれば分かりやすく、PC内に入っているHDD,SSDのことですね。基本的には自分（OSから見て自分自身）が利用するためのデータ領域です。このようなストレージをDAS（Direct Attached Storage）ともいいます。
 
 ### 使用イメージ
-<div  align="center"><a  href="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/8/0/80cdace5.jpg" title="WS000002" target="_blank"><img  src="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/8/0/80cdace5-s.jpg" width="480" height="297" border="0" alt="WS000002" hspace="5" class="pict"></a></div>
+![ローカルストレージ](/img/filestorage/02.jpg "ローカルストレージ")
 
 ### データ領域のアクセス方法（プロトコル）とデータの単位
 データ領域、つまりHDDやSSDへのアクセス方法（プロトコル）はACHIやNVMeといった規格があります。
@@ -87,7 +86,7 @@ PCであれば分かりやすく、PC内に入っているHDD,SSDのことです
 と言ってしまうと、先ほどのローカルストレージと違いがないですね。実はその通りで、データのアクセス単位という見方をすると、ローカルストレージとは差がありません。
 ただストレージの種類として「ブロックストレージ」という場合は、多くの場合は「SAN(Storage Area Network)」（もしくはそれと同等の仕組み）を指すことが多いです。
 
-<div  align="center"><a  href="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/a/7/a7b77f22.jpg" title="WS000003" target="_blank"><img  src="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/a/7/a7b77f22-s.jpg" width="480" height="280" border="0" alt="WS000003" hspace="5" class="pict"></a></div>
+![ブロックストレージ](/img/filestorage/03.jpg "ブロックストレージ")
 
 
 ### データ領域のアクセス方法（プロトコル）とデータの単位
@@ -137,7 +136,7 @@ OSはブロックストレージを「ファイルシステム」として認識
 
 一方で、ファイルストレージはストレージの管理（物理的な管理）は自分ではない、と言えます。
 
-<div  align="center"><a  href="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/b/7/b7dbc0cf.jpg" title="WS000004" target="_blank"><img  src="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/b/7/b7dbc0cf-s.jpg" width="480" height="293" border="0" alt="WS000004" hspace="5" class="pict"></a></div>
+![ファイルストレージ](/img/filestorage/04.jpg "ファイルストレージ")
 
 
 ### データ領域のアクセス方法（プロトコル）とデータの単位
@@ -171,7 +170,9 @@ OSはブロックストレージを「ファイルシステム」として認識
 が特徴です。
 <br /><br />
 少し仕組みの裏側を記載すると、AWSなどのクラウドの中身では、ブロックストレージでディレクトリ共有しているものが基本です。<br /><br />
-このディレクトリ共有を大量に作成し、仮想的に1つのストレージとして見せている、というイメージを持ってもらえればと思います。<br /><br /><div  align="center"><a  href="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/4/5/4515e375.jpg" title="WS000005" target="_blank"><img  src="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/4/5/4515e375-s.jpg" width="480" height="275" border="0" alt="WS000005" hspace="5" class="pict"></a></div><br />
+このディレクトリ共有を大量に作成し、仮想的に1つのストレージとして見せている、というイメージを持ってもらえればと思います。
+
+![オブジェクトストレージ](/img/filestorage/05.jpg "オブジェクトストレージ")
 
 ### データ領域のアクセス方法（プロトコル）とデータの単位
 オブジェクトストレージへはアクセスする単位は「オブジェクト」となります。アクセス方法はHTTP(S)であり、いわゆるブラウザからアクセスするか
