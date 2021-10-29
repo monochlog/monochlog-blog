@@ -74,7 +74,7 @@ An optional company name []:（任意 何も入力せずEnter）
 
 san用のファイルを作成  
 `vi /etc/host/svrcrt/san`
-~~~
+~~~text
 subjectAltName = IP:xx.xx.xx.xx,DNS:*.test.local
 ~~~
 
@@ -87,4 +87,4 @@ subjectAltName = IP:xx.xx.xx.xx,DNS:*.test.local
 
 以上です。
 
-あとは作成したものを各アプリケーションなどで利用しましょう。
+あとは作成したものを各アプリケーションなどで利用しましょう。  
