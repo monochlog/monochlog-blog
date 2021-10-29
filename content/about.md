@@ -7,7 +7,7 @@ weight: 70
 comment: false
 ---
 
-![Auther](img/mono.png)  
+![Auther](../img/mono.png)  
 Auther:Mono  
 ブログ ホスティング: Github Pages  
 ブログ テーマ：Hugo Even  
