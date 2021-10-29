@@ -52,12 +52,12 @@ sequenceDiagrams:
 先に結論をまとめましょう。今回の整理範囲は以下の通りです。
 
 
-| 種類 | データ転送方式 | 利用基盤 | プロトコル | 物理Disk管理 | 使用例 |
+| 種類 | データ転送 | 利用基盤 | プロトコル | 物理Disk管理 | 使用例 |
 | :--: | :--: | :--: | :--: | :--: |:--: |
-| ローカル  ストレージ | ブロック | オンプレ | NVMe | 自OS |  DAS |
-| ブロック  ストレージ | ブロック | クラウド  オンプレ | SCSI/FCoE | 自OS |  SAN  AWS EBSなど |
-| ファイル  ストレージ | ファイル | クラウド  オンプレ | CFS/NFS | 他OS |  NAS  AWS EFSなど |
-| オブジェクト  ストレージ | オブジェクト | クラウド| HTTPS | 他OS | AWS S3  DropBox など |
+| ローカル<br>ストレージ | ブロック | オンプレ | NVMe | 自OS |  DAS |
+| ブロック<br>ストレージ | ブロック | クラウド<br>オンプレ | SCSI/FCoE | 自OS |  SAN<br>AWS EBSなど |
+| ファイル<br>ストレージ | ファイル | クラウド<br>オンプレ | CFS/NFS | 他OS |  NAS<br>AWS EFSなど |
+| オブジェクト<br>ストレージ | オブジェクト | クラウド| HTTPS | 他OS | AWS S3<br>DropBox など |
 
 
 <div  align="center"><a  href="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/a/b/ab89e902.jpg" title="WS000001" target="_blank"><img  src="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/a/b/ab89e902-s.jpg" width="480" height="270" border="0" alt="WS000001" hspace="5" class="pict"></a></div>
