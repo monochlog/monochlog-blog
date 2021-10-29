@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SAN対応自己証明書 - Monochlog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mono" /><meta name="description" content="" /><meta name="keywords" content="Monochlog, IT" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.88.1 with theme even" />
+
+
+<link rel="canonical" href="https://monochlog.github.io/monochlog-blog/post/certification-san/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://monochlog.github.io/monochlog-blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://monochlog.github.io/monochlog-blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://monochlog.github.io/monochlog-blog/favicon-16x16.png">
+<link rel="manifest" href="https://monochlog.github.io/monochlog-blog/manifest.json">
+<link rel="mask-icon" href="https://monochlog.github.io/monochlog-blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://monochlog.github.io/monochlog-blog/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="SAN対応自己証明書" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://monochlog.github.io/monochlog-blog/post/certification-san/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-10-28T23:28:29+09:00" />
+<meta property="article:modified_time" content="2021-10-28T23:28:29+09:00" />
+
+<meta itemprop="name" content="SAN対応自己証明書">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-10-28T23:28:29+09:00" />
+<meta itemprop="dateModified" content="2021-10-28T23:28:29+09:00" />
+<meta itemprop="wordCount" content="664">
+<meta itemprop="keywords" content="セキュリティ," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SAN対応自己証明書"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://monochlog.github.io/monochlog-blog/" class="logo">Monochlog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://monochlog.github.io/monochlog-blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://monochlog.github.io/monochlog-blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://monochlog.github.io/monochlog-blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://monochlog.github.io/monochlog-blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://monochlog.github.io/monochlog-blog/privacypolicy/">
+        <li class="mobile-menu-item">Privacy Policy</li>
+      </a><a href="https://monochlog.github.io/monochlog-blog/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://monochlog.github.io/monochlog-blog/" class="logo">Monochlog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://monochlog.github.io/monochlog-blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://monochlog.github.io/monochlog-blog/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://monochlog.github.io/monochlog-blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://monochlog.github.io/monochlog-blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://monochlog.github.io/monochlog-blog/privacypolicy/">Privacy Policy</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://monochlog.github.io/monochlog-blog/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SAN対応自己証明書</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-10-28 </span>
+        <div class="post-category">
+            <a href="https://monochlog.github.io/monochlog-blog/categories/it%E3%83%AA%E3%83%86%E3%83%A9%E3%82%B7/"> ITリテラシ </a>
+            <a href="https://monochlog.github.io/monochlog-blog/categories/linux/"> Linux </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#はじめに">はじめに</a></li>
+        <li><a href="#作成方法">作成方法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="はじめに">はじめに</h2>
+<p>今回は自己証明書のうちでも、主流になっているSANへの対応方法をまとめます。
+そもそもですが、SANとはsubject Alt Nameの略称です。</p>
+<p>以前は1ドメイン、1証明書が必要であり、大量のサーバを構築する際にはその管理や適用作業にとても手間がかかりました。</p>
+<p>このSAN（サブジェクトの別名）においてはサブドメインを含めたドメインを指定できるようになり、マルチホスト、マルチドメインで1つの証明書をまとめることができるようになりました。</p>
+<p>また、別の角度からですが、Chrome、Edgeブラウザ（chromiumベースブラウザ）バージョン58+ではCN（コモンネーム）という 従来ドメインを指定していた箇所だけでは評価しなくなっています。</p>
+<p>私の周辺では利用ユーザが多いこともあり、証明書でのSAN対応は必須な状況です。</p>
+<p>はい。前置きが長くなったので作成方法。</p>
+<h2 id="作成方法">作成方法</h2>
+<p><code>openssl genrsa -aes128 2048 &gt; server.pem</code></p>
+<p>公開鍵の作成 (細かいところは適宜変えてください）<br>
+<code>openssl req -new -key server.pem &gt; server.csr</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Country Name (2 letter code) [AU]: JP
+State or Province Name (full name) [Some-state]: Tokyo
+Locality Name (eg, city) []: Minato-ku
+Organization Name (eg, company) [Internet Widgits Pty Ltd]: Test Inc.
+Organizational Unit Name (eg, section) []:test section
+Common Name (eg, YOUR name) []:xx.xx.xx.xx(もしくはFQDN)
+Email Address []:（任意 何も入力せずEnter）
+A challenge password[]:（任意 何も入力せずEnter）
+An optional company name []:（任意 何も入力せずEnter）
+</code></pre></td></tr></table>
+</div>
+</div><p>san用のファイルを作成<br>
+<code>vi /etc/host/svrcrt/san</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">subjectAltName = IP:xx.xx.xx.xx,DNS:*.test.local
+</code></pre></td></tr></table>
+</div>
+</div><p>サーバ証明書の発行(san含む)<br>
+<code>openssl x509 -req -days 365 -sha256 -in server.csr -signkey server.pem -out server.crt -extfile san</code></p>
+<p>パスフレーズの省略化<br>
+<code>mv server.pem server.pem.back</code>
+<code>openssl rsa -in server.pem.back -out server.pem</code></p>
+<p>以上です。</p>
+<p>あとは作成したものを各アプリケーションなどで利用しましょう。</p>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://monochlog.github.io/monochlog-blog/tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3/">セキュリティ</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://monochlog.github.io/monochlog-blog/post/filestorage/">
+            <span class="next-text nav-default">ファイルストレージ</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'https-monochlog-github-io-monochlog-blog';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://twitter.com/monochlog" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/monochlog/mono-repo" class="iconfont icon-github" title="github"></a>
+  <a href="https://monochlog.github.io/monochlog-blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2021　
+    <span>Mono</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="https://monochlog.github.io/monochlog-blog/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-132831922-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
