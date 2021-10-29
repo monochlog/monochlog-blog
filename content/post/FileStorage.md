@@ -84,8 +84,7 @@ PCであれば分かりやすく、PC内に入っているHDD,SSDのことです
 ### 概要
 ブロックストレージとは、OSがブロック単位でアクセスするストレージです。
 
-と言ってしまうと、先ほどのローカルストレージと違いがないですね。実はその通りで、データのアクセス単位という見方をすると、
-ローカルストレージとは差がありません。
+と言ってしまうと、先ほどのローカルストレージと違いがないですね。実はその通りで、データのアクセス単位という見方をすると、ローカルストレージとは差がありません。
 ただストレージの種類として「ブロックストレージ」という場合は、多くの場合は「SAN(Storage Area Network)」（もしくはそれと同等の仕組み）を指すことが多いです。
 
 <div  align="center"><a  href="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/a/7/a7b77f22.jpg" title="WS000003" target="_blank"><img  src="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/a/7/a7b77f22-s.jpg" width="480" height="280" border="0" alt="WS000003" hspace="5" class="pict"></a></div>
