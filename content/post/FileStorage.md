@@ -59,8 +59,7 @@ sequenceDiagrams:
 | ファイル<br>ストレージ | ファイル | クラウド<br>オンプレ | CFS/NFS | 他OS |  NAS<br>AWS EFSなど |
 | オブジェクト<br>ストレージ | オブジェクト | クラウド| HTTPS | 他OS | AWS S3<br>DropBox など |
 
-
-<div  align="center"><a  href="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/a/b/ab89e902.jpg" title="WS000001" target="_blank"><img  src="https://livedoor.blogimg.jp/tetratetto1985-14mqzmex/imgs/a/b/ab89e902-s.jpg" width="480" height="270" border="0" alt="WS000001" hspace="5" class="pict"></a></div>
+![ストレージの種類](/img/filestorage/01.jpg "ストレージの種類")
 
 では行きましょう。
 ## ローカルストレージ
