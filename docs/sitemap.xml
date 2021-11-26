@@ -16,6 +16,27 @@
   </url>
   
   <url>
+    <loc>https://monochlog.github.io/monochlog-blog/post/iam-01/</loc>
+    <lastmod>2021-11-26T09:26:48+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://monochlog.github.io/monochlog-blog/</loc>
+    <lastmod>2021-11-26T09:26:48+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://monochlog.github.io/monochlog-blog/post/</loc>
+    <lastmod>2021-11-26T09:26:48+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://monochlog.github.io/monochlog-blog/categories/</loc>
     <lastmod>2021-10-28T23:28:29+09:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -31,20 +52,6 @@
   
   <url>
     <loc>https://monochlog.github.io/monochlog-blog/categories/linux/</loc>
-    <lastmod>2021-10-28T23:28:29+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://monochlog.github.io/monochlog-blog/</loc>
-    <lastmod>2021-10-28T23:28:29+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://monochlog.github.io/monochlog-blog/post/</loc>
     <lastmod>2021-10-28T23:28:29+09:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
