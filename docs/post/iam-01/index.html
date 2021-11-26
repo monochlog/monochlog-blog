@@ -49,7 +49,7 @@
 <meta itemprop="name" content="IAM入門 認証">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-11-26T09:26:48+09:00" />
 <meta itemprop="dateModified" content="2021-11-26T09:26:48+09:00" />
-<meta itemprop="wordCount" content="1485">
+<meta itemprop="wordCount" content="1620">
 <meta itemprop="keywords" content="AWS IAM," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="IAM入門 認証"/>
 <meta name="twitter:description" content=""/>
@@ -159,7 +159,8 @@
             <li><a href="#iamユーザ">IAMユーザ</a></li>
             <li><a href="#パワーユーザiamユーザ">パワーユーザ（IAMユーザ）</a></li>
             <li><a href="#iamグループ">IAMグループ</a></li>
-            <li><a href="#実際の使い方">実際の使い方</a></li>
+            <li><a href="#利用シナリオ">利用シナリオ</a></li>
+            <li><a href="#アクセスキー">アクセスキー</a></li>
           </ul>
         </li>
         <li><a href="#4iamユーザのベストプラクティス">4.IAMユーザのベストプラクティス</a></li>
@@ -196,7 +197,7 @@
 <li>すべてのリソースに関してすべての権限を有する</li>
 <li>IAMで設定する権限設定では制御できない</li>
 </ul>
-<p>多くの場合ルートユーザの使用は制限する、またセキュリティを高くする（MFAを適用する）などがベストプラクティスとして挙がっています。詳しくは別途記載仕様と思います。</p>
+<p>多くの場合ルートユーザの使用は制限する、またセキュリティを高くする（MFAを適用する）などがベストプラクティスとして挙がっています。</p>
 <h3 id="iamユーザ">IAMユーザ</h3>
 <p>IAMユーザはAWSアカウント内で作成するユーザで、このユーザを用いてAWSの各種マネージドサービスなどを利用します。どのサービスや機能を利用できるかは認可で設定します。</p>
 <p>基本的には1人1ユーザとするのが望ましいです。</p>
@@ -206,7 +207,7 @@
 <h3 id="iamグループ">IAMグループ</h3>
 <p>IAMグループとはIAMユーザをまとめて管理する機能です。グループにまとめることで、別途まとめます認可（権限）の付与に利用することで運用効率が上がります。</p>
 <p>IAMグループは私の経験では会社の部署（経理部、営業部、システム部、など）のような単位でまとめることが多いイメージです。</p>
-<h3 id="実際の使い方">実際の使い方</h3>
+<h3 id="利用シナリオ">利用シナリオ</h3>
 <p>経験談となりますが以下のような使い方をしています。</p>
 <ul>
 <li>IAMグループとIAMユーザ（パワーユーザ）を作る
@@ -217,9 +218,12 @@
 <li>必要に応じて各IAMグループに一般利用者のIAMユーザを作成</li>
 </ul>
 <p>部署内での管理についてはパワーユーザを持つIAMユーザに委ね、利用するユーザや権限は別で管理する、といったイメージです。</p>
+<h3 id="アクセスキー">アクセスキー</h3>
+<p>IAMユーザとルートユーザではAWS CLIやAWS SDK等にて利用するアクセスキー（ID/シークレットアクセスキー）を発行することが可能です。</p>
 <h2 id="4iamユーザのベストプラクティス">4.IAMユーザのベストプラクティス</h2>
-<p>IAMユーザのベストプラクティスとしては以下の点が語られています。</p>
+<p>IAMユーザのベストプラクティスとしては以下の点が語られています。合わせてルートユーザのベストプラクティスをまとめます。</p>
 <ul>
+<li>ルートユーザのアクセスキーは使用しない</li>
 <li>個別のIAMユーザを作成する。（個人個人で作成する）
 <ul>
 <li>メリット<br>
@@ -228,6 +232,8 @@
 Amazon CloudTrailログからアクションを追跡できる</li>
 </ul>
 </li>
+<li>パスワードは強力なポリシーを設定</li>
+<li>アクセスキーを共有しない</li>
 </ul>
 <p><a href="https://www.slideshare.net/AmazonWebServicesJapan/20190129-aws-black-belt-online-seminar-aws-identity-and-access-management-iam-part1" target="_blank">20190129 AWS Black Belt Online Seminar AWS Identity and Access Management (AWS IAM) Part1</a></p>
 <h2 id="まとめ">まとめ</h2>
