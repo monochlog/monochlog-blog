@@ -99,9 +99,9 @@ IAMグループは私の経験では会社の部署（経理部、営業部、�
 IAMユーザのベストプラクティスとしては以下の点が語られています[^1]。
 - 個別のIAMユーザを作成する。（個人個人で作成する）
   - メリット  
-　    - 認証情報を個別に変更できる  
-　    - アクセス許可をいつでも変更、無効化できる  
-　    - Amazon CloudTrailログからアクションを追跡できる
+: 認証情報を個別に変更できる  
+: アクセス許可をいつでも変更、無効化できる  
+: Amazon CloudTrailログからアクションを追跡できる
 
 [^1] https://www.slideshare.net/AmazonWebServicesJapan/20190129-aws-black-belt-online-seminar-aws-identity-and-access-management-iam-part＞
 ## まとめ
