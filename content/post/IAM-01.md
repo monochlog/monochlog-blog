@@ -103,7 +103,7 @@ IAMユーザのベストプラクティスとしては以下の点が語られ�
  アクセス許可をいつでも変更、無効化できる  
  Amazon CloudTrailログからアクションを追跡できる
  
-[20190129 AWS Black Belt Online Seminar AWS Identity and Access Management (AWS IAM) Part1](https://www.slideshare.net/AmazonWebServicesJapan/20190129-aws-black-belt-online-seminar-aws-identity-and-access-management-iam-part1)
+[20190129 AWS Black Belt Online Seminar AWS Identity and Access Management (AWS IAM) Part1](https://www.slideshare.net/AmazonWebServicesJapan/20190129-aws-black-belt-online-seminar-aws-identity-and-access-management-iam-part1){:target="_blank"}
 ## まとめ
 今回は基本的なIAMの認証で登場するユーザ、グループについてまとめました。これだけでは重要性が見えてきませんが、次回説明予定の認可を加えることでぐっと深みが出てきます。
 
