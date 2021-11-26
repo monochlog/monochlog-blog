@@ -96,14 +96,14 @@ IAMグループは私の経験では会社の部署（経理部、営業部、�
 部署内での管理についてはパワーユーザを持つIAMユーザに委ね、利用するユーザや権限は別で管理する、といったイメージです。
 
 ## IAMユーザのベストプラクティス
-IAMユーザのベストプラクティスとしては以下の点が語られています[^1]。
+IAMユーザのベストプラクティスとしては以下の点が語られています。
 - 個別のIAMユーザを作成する。（個人個人で作成する）
   - メリット  
-: 認証情報を個別に変更できる  
-: アクセス許可をいつでも変更、無効化できる  
-: Amazon CloudTrailログからアクションを追跡できる
-
-[^1] https://www.slideshare.net/AmazonWebServicesJapan/20190129-aws-black-belt-online-seminar-aws-identity-and-access-management-iam-part＞
+ 認証情報を個別に変更できる  
+ アクセス許可をいつでも変更、無効化できる  
+ Amazon CloudTrailログからアクションを追跡できる
+ 
+[20190129 AWS Black Belt Online Seminar AWS Identity and Access Management (AWS IAM) Part1](https://www.slideshare.net/AmazonWebServicesJapan/20190129-aws-black-belt-online-seminar-aws-identity-and-access-management-iam-part1)
 ## まとめ
 今回は基本的なIAMの認証で登場するユーザ、グループについてまとめました。これだけでは重要性が見えてきませんが、次回説明予定の認可を加えることでぐっと深みが出てきます。
 
