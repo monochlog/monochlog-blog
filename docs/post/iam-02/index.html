@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>IAM入門 認証 - Monochlog</title>
+  <title>IAM入門 認可 - Monochlog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.88.1 with theme even" />
 
 
-<link rel="canonical" href="https://monochlog.github.io/monochlog-blog/post/iam-01/" />
+<link rel="canonical" href="https://monochlog.github.io/monochlog-blog/post/iam-02/" />
 <link rel="apple-touch-icon" sizes="180x180" href="https://monochlog.github.io/monochlog-blog/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://monochlog.github.io/monochlog-blog/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://monochlog.github.io/monochlog-blog/favicon-16x16.png">
@@ -39,19 +39,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="IAM入門 認証" />
+<meta property="og:title" content="IAM入門 認可" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://monochlog.github.io/monochlog-blog/post/iam-01/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-11-26T09:26:48+09:00" />
-<meta property="article:modified_time" content="2021-11-26T09:26:48+09:00" />
+<meta property="og:url" content="https://monochlog.github.io/monochlog-blog/post/iam-02/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-11-26T10:50:47+09:00" />
+<meta property="article:modified_time" content="2021-11-26T10:50:47+09:00" />
 
-<meta itemprop="name" content="IAM入門 認証">
-<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-11-26T09:26:48+09:00" />
-<meta itemprop="dateModified" content="2021-11-26T09:26:48+09:00" />
-<meta itemprop="wordCount" content="1485">
+<meta itemprop="name" content="IAM入門 認可">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-11-26T10:50:47+09:00" />
+<meta itemprop="dateModified" content="2021-11-26T10:50:47+09:00" />
+<meta itemprop="wordCount" content="56">
 <meta itemprop="keywords" content="AWS IAM," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="IAM入門 認証"/>
+<meta name="twitter:title" content="IAM入門 認可"/>
 <meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
@@ -133,7 +133,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">IAM入門 認証</h1>
+      <h1 class="post-title">IAM入門 認可</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2021-11-26 </span>
@@ -152,18 +152,7 @@
     <li>
       <ul>
         <li><a href="#1はじめに">1.はじめに</a></li>
-        <li><a href="#2iamとは">2.IAMとは</a></li>
-        <li><a href="#3認証">3.認証</a>
-          <ul>
-            <li><a href="#ルートユーザ">ルートユーザ</a></li>
-            <li><a href="#iamユーザ">IAMユーザ</a></li>
-            <li><a href="#パワーユーザiamユーザ">パワーユーザ（IAMユーザ）</a></li>
-            <li><a href="#iamグループ">IAMグループ</a></li>
-            <li><a href="#実際の使い方">実際の使い方</a></li>
-          </ul>
-        </li>
-        <li><a href="#4iamユーザのベストプラクティス">4.IAMユーザのベストプラクティス</a></li>
-        <li><a href="#まとめ">まとめ</a></li>
+        <li><a href="#2目次">2.目次</a></li>
       </ul>
     </li>
   </ul>
@@ -172,66 +161,8 @@
 </div>
     <div class="post-content">
       <h2 id="1はじめに">1.はじめに</h2>
-<p>今回はAWS IAMについて詳細をまとめていきます。AWSのサービスの中でも共通的で目立たないマネージドサービスですが、セキュリティ面からみると最も重要といっても過言ではない機能であり、奥が深いため、正確な理解をしていきましょう。</p>
-<h2 id="2iamとは">2.IAMとは</h2>
-<p>まずは公式からの引用です。</p>
-<blockquote>
-<p>AWS Identity and Access Management (IAM) は、AWS リソースへのアクセスを安全に管理するためのウェブサービスです。IAM により、誰を認証 (サインイン) し、誰にリソースの使用を承認する (アクセス権限を持たせる) かを制御します。</p>
-</blockquote>
-<p>かいつまむと、「誰」と「権限」を定義するサービスです。多くの場合認証と認可という表現がされます。それらを定義していく機能になります。</p>
-<p>ちなみに認証と認可は以下の通り。</p>
-<ul>
-<li>認証：確認相手が「誰」であるかを確かめること。</li>
-<li>認可：確認相手が「何」をできるかを定めること。</li>
-</ul>
-<p>今回は「誰」つまり認証について基本的な事項をまとめていきます。</p>
-<h2 id="3認証">3.認証</h2>
-<p>AWSでの認証は多くの機能がありますが、ここではまず以下に示す基本的なものだけを扱います。</p>
-<p><img src="https://monochlog.github.io/monochlog-blog/img/iam/iam-01.jpg" alt="IAMユーザ" title="IAMユーザの基本"></p>
-<h3 id="ルートユーザ">ルートユーザ</h3>
-<p>ルートユーザは正しくはIAMで管理するものではありません。AWSアカウントを作成した際に自動的に作られるユーザを指します。</p>
-<p>このユーザは以下のような特徴があります。</p>
-<ul>
-<li>AWSアカウントを作成したEメールアドレスおよびパスワードでログインする</li>
-<li>すべてのリソースに関してすべての権限を有する</li>
-<li>IAMで設定する権限設定では制御できない</li>
-</ul>
-<p>多くの場合ルートユーザの使用は制限する、またセキュリティを高くする（MFAを適用する）などがベストプラクティスとして挙がっています。詳しくは別途記載仕様と思います。</p>
-<h3 id="iamユーザ">IAMユーザ</h3>
-<p>IAMユーザはAWSアカウント内で作成するユーザで、このユーザを用いてAWSの各種マネージドサービスなどを利用します。どのサービスや機能を利用できるかは認可で設定します。</p>
-<p>基本的には1人1ユーザとするのが望ましいです。</p>
-<h3 id="パワーユーザiamユーザ">パワーユーザ（IAMユーザ）</h3>
-<p>IAMユーザの中でも特別扱いされるのがパワーユーザです。正確には「パワーユーザ」という権限を付与したIAMユーザです。</p>
-<p>パワーユーザはルートユーザからIAMの操作権限を外したもの、になります。</p>
-<h3 id="iamグループ">IAMグループ</h3>
-<p>IAMグループとはIAMユーザをまとめて管理する機能です。グループにまとめることで、別途まとめます認可（権限）の付与に利用することで運用効率が上がります。</p>
-<p>IAMグループは私の経験では会社の部署（経理部、営業部、システム部、など）のような単位でまとめることが多いイメージです。</p>
-<h3 id="実際の使い方">実際の使い方</h3>
-<p>経験談となりますが以下のような使い方をしています。</p>
-<ul>
-<li>IAMグループとIAMユーザ（パワーユーザ）を作る
-<ul>
-<li>IAMグループは前述の通り部署ごと、その中で管理者としてパワーユーザを1つ作成</li>
-</ul>
-</li>
-<li>必要に応じて各IAMグループに一般利用者のIAMユーザを作成</li>
-</ul>
-<p>部署内での管理についてはパワーユーザを持つIAMユーザに委ね、利用するユーザや権限は別で管理する、といったイメージです。</p>
-<h2 id="4iamユーザのベストプラクティス">4.IAMユーザのベストプラクティス</h2>
-<p>IAMユーザのベストプラクティスとしては以下の点が語られています。</p>
-<ul>
-<li>個別のIAMユーザを作成する。（個人個人で作成する）
-<ul>
-<li>メリット<br>
-認証情報を個別に変更できる<br>
-アクセス許可をいつでも変更、無効化できる<br>
-Amazon CloudTrailログからアクションを追跡できる</li>
-</ul>
-</li>
-</ul>
-<p><a href="https://www.slideshare.net/AmazonWebServicesJapan/20190129-aws-black-belt-online-seminar-aws-identity-and-access-management-iam-part1" target="_blank">20190129 AWS Black Belt Online Seminar AWS Identity and Access Management (AWS IAM) Part1</a></p>
-<h2 id="まとめ">まとめ</h2>
-<p>今回は基本的なIAMの認証で登場するユーザ、グループについてまとめました。これだけでは重要性が見えてきませんが、次回説明予定の認可を加えることでぐっと深みが出てきます。</p>
+<p>前回の<a href="https://monochlog.github.io/monochlog-blog/post/ima-01">IAM入門 認証</a>でまとめましたユーザなどへの権限を定義する認可についてまとめていきます。</p>
+<h2 id="2目次">2.目次</h2>
     </div>
 
     
@@ -240,13 +171,9 @@ Amazon CloudTrailログからアクションを追跡できる</li>
           <a href="https://monochlog.github.io/monochlog-blog/tags/aws-iam/">AWS IAM</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="https://monochlog.github.io/monochlog-blog/post/iam-02/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">IAM入門 認可</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="https://monochlog.github.io/monochlog-blog/post/certification-san/">
-            <span class="next-text nav-default">SAN対応自己証明書</span>
+        
+        <a class="next" href="https://monochlog.github.io/monochlog-blog/post/iam-01/">
+            <span class="next-text nav-default">IAM入門 認証</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
