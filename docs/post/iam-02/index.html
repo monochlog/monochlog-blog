@@ -49,7 +49,7 @@
 <meta itemprop="name" content="IAM入門 認可">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-11-26T10:50:47+09:00" />
 <meta itemprop="dateModified" content="2021-11-26T10:50:47+09:00" />
-<meta itemprop="wordCount" content="440">
+<meta itemprop="wordCount" content="639">
 <meta itemprop="keywords" content="AWS IAM," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="IAM入門 認可"/>
 <meta name="twitter:description" content=""/>
@@ -154,6 +154,7 @@
         <li><a href="#1はじめに">1.はじめに</a></li>
         <li><a href="#2iamとは">2.IAMとは</a></li>
         <li><a href="#3iamでの認可とは">3.IAMでの認可とは</a></li>
+        <li><a href="#4ポリシーの構成">4.ポリシーの構成</a></li>
       </ul>
     </li>
   </ul>
@@ -176,10 +177,16 @@
 </ul>
 <p>今回は「何」ができるか、つまり認可について基本的な事項をまとめていきます。</p>
 <h2 id="3iamでの認可とは">3.IAMでの認可とは</h2>
-<p>IAMで認可を設定する機能を「ポリシー」と呼びます。
+<p>IAMで認可を設定する機能を「IAM ポリシー」と呼びます。
 まずは認証の機能であるIAMユーザとIAMグループとのかかわりを見てみましょう。</p>
 <p>今回も基本的な部分でまとめています。</p>
 <p><img src="https://monochlog.github.io/monochlog-blog/img/iam/iam-02.jpg" alt="認証と認可" title="認証と認可"></p>
+<p>IAM ポリシーはIAM ユーザやIAMグループに対して実施可能なアクションなどを定義し、権限を付与、割り当てて利用します。</p>
+<p>グループに割り当てを行うことで、まとめて権限を管理することができるため、基本的にはグループへの割り当てを行うほうが良いといえます。</p>
+<h2 id="4ポリシーの構成">4.ポリシーの構成</h2>
+<p>AWSポリシーはほとんどJSON形式で定義されています。構成イメージを公式ドキュメントから引用します。</p>
+<p><img src="https://monochlog.github.io/monochlog-blog/img/iam/iam-03.jpg" alt="ポリシー構成"></p>
+<p><a href="https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/access_policies.html" target="_blank">JSON ポリシードキュメント構造</a></p>
     </div>
 
     
