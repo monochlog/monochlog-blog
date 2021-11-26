@@ -49,7 +49,7 @@
 <meta itemprop="name" content="IAM入門 認可">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-11-26T10:50:47+09:00" />
 <meta itemprop="dateModified" content="2021-11-26T10:50:47+09:00" />
-<meta itemprop="wordCount" content="56">
+<meta itemprop="wordCount" content="345">
 <meta itemprop="keywords" content="AWS IAM," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="IAM入門 認可"/>
 <meta name="twitter:description" content=""/>
@@ -152,7 +152,7 @@
     <li>
       <ul>
         <li><a href="#1はじめに">1.はじめに</a></li>
-        <li><a href="#2目次">2.目次</a></li>
+        <li><a href="#2iamとは">2.IAMとは</a></li>
       </ul>
     </li>
   </ul>
@@ -162,7 +162,18 @@
     <div class="post-content">
       <h2 id="1はじめに">1.はじめに</h2>
 <p>前回の<a href="https://monochlog.github.io/monochlog-blog/post/ima-01">IAM入門 認証</a>でまとめましたユーザなどへの権限を定義する認可についてまとめていきます。</p>
-<h2 id="2目次">2.目次</h2>
+<h2 id="2iamとは">2.IAMとは</h2>
+<p>改めてIAMとは何かというと公式から引用します。</p>
+<blockquote>
+<p>AWS Identity and Access Management (IAM) は、AWS リソースへのアクセスを安全に管理するためのウェブサービスです。IAM により、誰を認証 (サインイン) し、誰にリソースの使用を承認する (アクセス権限を持たせる) かを制御します。</p>
+</blockquote>
+<p>かいつまむと、「誰」と「権限」を定義するサービスです。多くの場合認証と認可という表現がされます。それらを定義していく機能になります。</p>
+<p>ちなみに認証と認可は以下の通り。</p>
+<ul>
+<li>認証：確認相手が「誰」であるかを確かめること。</li>
+<li>認可：確認相手が「何」をできるかを定めること。</li>
+</ul>
+<p>今回は「何」ができるか、つまり認可について基本的な事項をまとめていきます。</p>
     </div>
 
     

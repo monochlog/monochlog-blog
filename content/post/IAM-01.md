@@ -109,6 +109,7 @@ IAMユーザのベストプラクティスとしては以下の点が語られ�
   Amazon CloudTrailログからアクションを追跡できる  
 - パスワードは強力なポリシーを設定
 - アクセスキーを共有しない
+- ルートユーザや権限の強いユーザ（パワーユーザなど）にはMFAを有効化する
 
 [20190129 AWS Black Belt Online Seminar AWS Identity and Access Management (AWS IAM) Part1](https://www.slideshare.net/AmazonWebServicesJapan/20190129-aws-black-belt-online-seminar-aws-identity-and-access-management-iam-part1)
 ## まとめ
