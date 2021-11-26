@@ -49,7 +49,7 @@
 <meta itemprop="name" content="IAM入門">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-11-26T09:26:48+09:00" />
 <meta itemprop="dateModified" content="2021-11-26T09:26:48+09:00" />
-<meta itemprop="wordCount" content="383">
+<meta itemprop="wordCount" content="636">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="IAM入門"/>
 <meta name="twitter:description" content=""/>
@@ -151,7 +151,12 @@
       <ul>
         <li><a href="#1はじめに">1.はじめに</a></li>
         <li><a href="#2iamとは">2.IAMとは</a></li>
-        <li><a href="#3認証">3.認証</a></li>
+        <li><a href="#3認証">3.認証</a>
+          <ul>
+            <li><a href="#ルートユーザ">ルートユーザ</a></li>
+            <li><a href="#iamユーザ">IAMユーザ</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -171,6 +176,16 @@
 <h2 id="3認証">3.認証</h2>
 <p>AWSでの認証は多くの機能がありますが、ここではまず以下に示す基本的なものだけを扱います。</p>
 <p><img src="https://monochlog.github.io/monochlog-blog/img/iam/iam-01.jpg" alt="IAMユーザ" title="IAMユーザの基本"></p>
+<h3 id="ルートユーザ">ルートユーザ</h3>
+<p>ルートユーザは正しくはIAMで管理するものではありません。AWSアカウントを作成した際に自動的に作られるユーザを指します。</p>
+<p>このユーザは以下のような特徴があります。</p>
+<ul>
+<li>AWSアカウントを作成したEメールアドレスおよびパスワードでログインする</li>
+<li>すべてのリソースに関してすべての権限を有する</li>
+<li>IAMで設定する権限設定では制御できない</li>
+</ul>
+<p>多くの場合ルートユーザの使用は制限する、またセキュリティを高くする（MFAを適用する）などがベストプラクティスとして挙がっています。詳しくは別途記載仕様と思います。</p>
+<h3 id="iamユーザ">IAMユーザ</h3>
     </div>
 
     
