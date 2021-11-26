@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>IAM入門 認可 - Monochlog</title>
+  <title>IAM入門 認可（ポリシー編） - Monochlog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -39,19 +39,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="IAM入門 認可" />
+<meta property="og:title" content="IAM入門 認可（ポリシー編）" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://monochlog.github.io/monochlog-blog/post/iam-02/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-11-26T10:50:47+09:00" />
 <meta property="article:modified_time" content="2021-11-26T10:50:47+09:00" />
 
-<meta itemprop="name" content="IAM入門 認可">
+<meta itemprop="name" content="IAM入門 認可（ポリシー編）">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-11-26T10:50:47+09:00" />
 <meta itemprop="dateModified" content="2021-11-26T10:50:47+09:00" />
-<meta itemprop="wordCount" content="639">
+<meta itemprop="wordCount" content="2474">
 <meta itemprop="keywords" content="AWS IAM," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="IAM入門 認可"/>
+<meta name="twitter:title" content="IAM入門 認可（ポリシー編）"/>
 <meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
@@ -133,7 +133,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">IAM入門 認可</h1>
+      <h1 class="post-title">IAM入門 認可（ポリシー編）</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2021-11-26 </span>
@@ -154,7 +154,25 @@
         <li><a href="#1はじめに">1.はじめに</a></li>
         <li><a href="#2iamとは">2.IAMとは</a></li>
         <li><a href="#3iamでの認可とは">3.IAMでの認可とは</a></li>
-        <li><a href="#4ポリシーの構成">4.ポリシーの構成</a></li>
+        <li><a href="#4ポリシーの構成">4.ポリシーの構成</a>
+          <ul>
+            <li><a href="#optional-top-level-elements">Optional top-level elements</a></li>
+            <li><a href="#statement">Statement</a></li>
+            <li><a href="#sidオプション">Sid（オプション）</a></li>
+            <li><a href="#effect">Effect</a></li>
+            <li><a href="#principalオプション一部のみ必須">Principal（オプション、一部のみ必須）</a></li>
+            <li><a href="#action">Action</a></li>
+            <li><a href="#resourceオプション一部のみ必須">Resource（オプション、一部のみ必須）</a></li>
+            <li><a href="#conditionオプション">Condition(オプション)</a></li>
+          </ul>
+        </li>
+        <li><a href="#5ポリシー作成">5.ポリシー作成</a>
+          <ul>
+            <li><a href="#管理ポリシーとインラインポリシー">管理ポリシーとインラインポリシー</a></li>
+          </ul>
+        </li>
+        <li><a href="#6ポリシーのベストプラクティス">6.ポリシーのベストプラクティス</a></li>
+        <li><a href="#7まとめ">7.まとめ</a></li>
       </ul>
     </li>
   </ul>
@@ -184,9 +202,154 @@
 <p>IAM ポリシーはIAM ユーザやIAMグループに対して実施可能なアクションなどを定義し、権限を付与、割り当てて利用します。</p>
 <p>グループに割り当てを行うことで、まとめて権限を管理することができるため、基本的にはグループへの割り当てを行うほうが良いといえます。</p>
 <h2 id="4ポリシーの構成">4.ポリシーの構成</h2>
-<p>AWSポリシーはほとんどJSON形式で定義されています。構成イメージを公式ドキュメントから引用します。</p>
+<p>AWSポリシーはほとんどJSON形式で定義されています。構成イメージを公式ドキュメントから引用します。各要素についてまとめていきます。</p>
 <p><img src="https://monochlog.github.io/monochlog-blog/img/iam/iam-03.jpg" alt="ポリシー構成"></p>
 <p><a href="https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/access_policies.html" target="_blank">JSON ポリシードキュメント構造</a></p>
+<h3 id="optional-top-level-elements">Optional top-level elements</h3>
+<p>jsonファイル全体に適用されるポリシー言語のバージョンを指定します。
+基本的には以下の通りです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;Version&#34;</span><span class="err">:</span> <span class="s2">&#34;2012-10-17&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="statement">Statement</h3>
+<p>具体的な権限を記述するためのコンテナ的な位置づけです。
+1つのポリシーには複数のStatementを含めることができます。</p>
+<h3 id="sidオプション">Sid（オプション）</h3>
+<p>SidはStatement iDの略で、複数のStatementがある場合に区別をしやすくするための記述です。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;Sid&#34;</span><span class="err">:</span> <span class="s2">&#34;FirstStatement&#34;</span><span class="err">,</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="effect">Effect</h3>
+<p>Allow　または　Denyを指定し、権限の許可か拒否かを定義します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;Effect&#34;</span><span class="err">:</span> <span class="s2">&#34;Allow&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="principalオプション一部のみ必須">Principal（オプション、一部のみ必須）</h3>
+<p>Principalは「このルールを誰に割り当ててよいか」を指定します。
+指定はARNを指定します。</p>
+<p>前段のイメージ図の通りポリシーは色々なユーザやグループに割り当てるため、この指定は必須ではありません。</p>
+<p>用途としては「特定のグループだけS3のバケットを利用できるようにしたい」みたいな場合に、「特定のグループ」を指定する利用方法になります。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;Principal&#34;</span><span class="err">:</span> <span class="p">{</span><span class="nt">&#34;AWS&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;arn:aws:iam::ACCOUNT-ID-:root&#34;</span><span class="p">]}</span><span class="err">,</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="action">Action</h3>
+<p>Actionでは権限を与えたい、または拒否したい具体的な操作を指定します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;Action&#34;</span><span class="err">:</span> <span class="p">[</span><span class="s2">&#34;iam:ChangePassword&#34;</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>アクション自体は多くの種類があるため、覚えるものでなく都度参照して合致するものを選択する、という使い方がよいと思います。</p>
+<h3 id="resourceオプション一部のみ必須">Resource（オプション、一部のみ必須）</h3>
+<p>このActionなどで操作してよい対象（リソース）を指定します。指定方法はPrincipalと同様にARNを用います。
+例えば「EC2の中でも特定のインスタンスだけ」にしたい場合に「特定のインスタンス」を指定する利用方法になります。
+指定しない場合は、このポリシーをアタッチ（割り当て）しているリソースのみが対象になります。</p>
+<p>よく現場で利用する方法としてはワイルドカードで以下のようにすることがあります。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;Resource&#34;</span><span class="err">:</span> <span class="s2">&#34;*&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="conditionオプション">Condition(オプション)</h3>
+<p>ポリシーでアクセス許可を与える場合の条件を指定します。よく用いるのはMFAが有効になっているユーザに対しては権限を与えたい、という感じですね。
+この場合の起債は下記の通りとなります。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;Condition&#34;</span><span class="err">:</span> <span class="p">{</span><span class="nt">&#34;Bool&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;aws:MultiFactorAuthPresent&#34;</span><span class="p">:</span> <span class="s2">&#34;true&#34;</span><span class="p">}}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="5ポリシー作成">5.ポリシー作成</h2>
+<p>ここまでポリシーの中身をマニュアルチックに見てきましたが、これらを全部把握して構築するのは大変です。
+そのため、AWSではポリシーを作る方法やテンプレートが複数用意されています。</p>
+<ol>
+<li>管理ポリシーとインラインポリシー</li>
+<li>ビジュアルエディタ</li>
+<li>ポリシーのテスト</li>
+</ol>
+<h3 id="管理ポリシーとインラインポリシー">管理ポリシーとインラインポリシー</h3>
+<p>手作業ですべてのポリシーを作成することは現実的ではないです。そのため、AWSが作成し、管理しているポリシーがあり、それをAWS管理ポリシーといいます。一方でユーザが自由に作成したものをカスタマ管理ポリシーと呼びます。</p>
+<p>また管理者の違いではなく、記載方法として特定のプリンシパルエンティティ（ロール、ユーザ、グループなどの総称）と1対1で定義するポリシーもあります。</p>
+<p>これらの特徴をまとめます。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">種類</th>
+<th style="text-align:left">利用方法</th>
+<th style="text-align:left">概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">AWS管理ポリシー</td>
+<td style="text-align:left">プリンシパルエンティティにアタッチする</td>
+<td style="text-align:left">AWSが管理をしており、典型的なテンプレートとして利用が可能。アップデートなどの変更も実施される。</td>
+</tr>
+<tr>
+<td style="text-align:left">カスタマー管理ポリシー</td>
+<td style="text-align:left">プリンシパルエンティティにアタッチする</td>
+<td style="text-align:left">各カスタマーで自身で作成したポリシー</td>
+</tr>
+<tr>
+<td style="text-align:left">インラインポリシー</td>
+<td style="text-align:left">特定のプリンシパルエンティティに埋め込む</td>
+<td style="text-align:left">厳密な利用者を定義したい場合に作成する専用のポリシー</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6ポリシーのベストプラクティス">6.ポリシーのベストプラクティス</h2>
+<p>ここまで見てきた内容についてBlackBeltにあるベストプラクティスをまとめます。</p>
+<ul>
+<li>最小限の権限を付与する。</li>
+<li>はじめはAWS管理ポリシーを用いる。なれたらAWS管理ポリシーをカスタマイズしたカスタマー管理ポリシーを作成する。</li>
+<li>ポリシーはユーザではなくグループ単位に割り当てる
+<ul>
+<li>管理を容易にすることができる。</li>
+</ul>
+</li>
+<li>インラインポリシーではなく、カスタマー管理ポリシーを使用する
+<ul>
+<li>カスタマイズが可能、再利用性が高い、ポリシーの管理を集約できるなどのメリット</li>
+</ul>
+</li>
+<li>安全性を向上させるためにCondition要素を利用する
+<ul>
+<li>許容するIPアドレス、日時、MFAデバイス認証の要求、SSLの要求などを指定する</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.slideshare.net/AmazonWebServicesJapan/20190129-aws-black-belt-online-seminar-aws-identity-and-access-management-iam-part1" target="_blank">20190129 AWS Black Belt Online Seminar AWS Identity and Access Management (AWS IAM) Part1</a></p>
+<h2 id="7まとめ">7.まとめ</h2>
+<p>今回はIAMの中でも権限を定義するポリシーに注目してまとめてきました。ポリシーを使うことで特定の権限をグループ単位に付与、または拒否できるなどを行うことでAWS利用者へのコントロールを適切にしていきましょう。</p>
+<p>次回はIAMロールについてまとめていきます。</p>
     </div>
 
     
