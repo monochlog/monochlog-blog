@@ -1,10 +1,9 @@
-{{ $related := .Site.RegularPages.Related . }} {{ with $related }}
-<div class="container l-related-articles">
-  <h2 class="l-list-title">see also...</h2>
-  <ul class="l-box-wrap container col3">
+{{ $related := .Site.RegularPages.Related . | first 5 }}
+{{ with $related }}
+  <h3>See Also...</h3>
+  <ul>
     {{ range . }}
-    <li class="l-box">{{ partial "_list-item.html" . }}</li>
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
     {{ end }}
   </ul>
-</div>
 {{ end }}
