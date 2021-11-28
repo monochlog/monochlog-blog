@@ -6,7 +6,7 @@
     <description>Recent content on Monochlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 26 Nov 2021 10:50:47 +0900</lastBuildDate><atom:link href="https://monochlog.github.io/monochlog-blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Nov 2021 16:22:41 +0900</lastBuildDate><atom:link href="https://monochlog.github.io/monochlog-blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Privacy Policy</title>
       <link>https://monochlog.github.io/monochlog-blog/privacypolicy/</link>
@@ -23,6 +23,15 @@
       
       <guid>https://monochlog.github.io/monochlog-blog/about/</guid>
       <description>Auther:Mono ブログ ホスティング: Github Pages ブログ テーマ：Hugo Even Editor：Visual Studio Code SIerとして公共システムや法人期間システムなどのクリティカ</description>
+    </item>
+    
+    <item>
+      <title>IAM入門 ロール編</title>
+      <link>https://monochlog.github.io/monochlog-blog/post/iam-03/</link>
+      <pubDate>Sun, 28 Nov 2021 16:22:41 +0900</pubDate>
+      
+      <guid>https://monochlog.github.io/monochlog-blog/post/iam-03/</guid>
+      <description></description>
     </item>
     
     <item>

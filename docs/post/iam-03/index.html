@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>IAM入門 ロール編 - Monochlog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mono" /><meta name="description" content="" /><meta name="keywords" content="Monochlog, IT" />
+
+
+
+<meta name="google-site-verification" content="eOIaLW89fY60lMHrjfToBJztMHZ7mufjW7WQC8c25Sc" />
+
+
+<meta name="generator" content="Hugo 0.88.1 with theme even" />
+
+
+<link rel="canonical" href="https://monochlog.github.io/monochlog-blog/post/iam-03/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://monochlog.github.io/monochlog-blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://monochlog.github.io/monochlog-blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://monochlog.github.io/monochlog-blog/favicon-16x16.png">
+<link rel="manifest" href="https://monochlog.github.io/monochlog-blog/manifest.json">
+<link rel="mask-icon" href="https://monochlog.github.io/monochlog-blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://monochlog.github.io/monochlog-blog/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="IAM入門 ロール編" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://monochlog.github.io/monochlog-blog/post/iam-03/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-11-28T16:22:41+09:00" />
+<meta property="article:modified_time" content="2021-11-28T16:22:41+09:00" />
+
+<meta itemprop="name" content="IAM入門 ロール編">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-11-28T16:22:41+09:00" />
+<meta itemprop="dateModified" content="2021-11-28T16:22:41+09:00" />
+<meta itemprop="wordCount" content="1385">
+<meta itemprop="keywords" content="AWS IAM," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="IAM入門 ロール編"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://monochlog.github.io/monochlog-blog/" class="logo">Monochlog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://monochlog.github.io/monochlog-blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://monochlog.github.io/monochlog-blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://monochlog.github.io/monochlog-blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://monochlog.github.io/monochlog-blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://monochlog.github.io/monochlog-blog/privacypolicy/">
+        <li class="mobile-menu-item">Privacy Policy</li>
+      </a><a href="https://monochlog.github.io/monochlog-blog/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://monochlog.github.io/monochlog-blog/" class="logo">Monochlog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://monochlog.github.io/monochlog-blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://monochlog.github.io/monochlog-blog/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://monochlog.github.io/monochlog-blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://monochlog.github.io/monochlog-blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://monochlog.github.io/monochlog-blog/privacypolicy/">Privacy Policy</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://monochlog.github.io/monochlog-blog/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">IAM入門 ロール編</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-11-28 </span>
+        <div class="post-category">
+            <a href="https://monochlog.github.io/monochlog-blog/categories/aws/"> AWS </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1はじめに">1.はじめに</a></li>
+        <li><a href="#2iamとは">2.IAMとは</a></li>
+        <li><a href="#3iamロールとは">3.IAMロールとは</a></li>
+        <li><a href="#4iamロールの認証">4.IAMロールの認証</a></li>
+        <li><a href="#5まとめ">5.まとめ</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="1はじめに">1.はじめに</h2>
+<p>前回の<a href="https://monochlog.github.io/monochlog-blog/post/iam-02">IAM入門 認可(ポリシー編)</a>をまとめてきましたが、今回はIAMロールについてまとめていきます。</p>
+<h2 id="2iamとは">2.IAMとは</h2>
+<p>改めてIAMとは何かというと公式から引用します。</p>
+<blockquote>
+<p>AWS Identity and Access Management (IAM) は、AWS リソースへのアクセスを安全に管理するためのウェブサービスです。IAM により、誰を認証 (サインイン) し、誰にリソースの使用を承認する (アクセス権限を持たせる) かを制御します。</p>
+</blockquote>
+<p>かいつまむと、「誰」と「権限」を定義するサービスです。多くの場合認証と認可という表現がされます。それらを定義していく機能になります。</p>
+<p>ちなみに認証と認可は以下の通り。</p>
+<ul>
+<li>認証：確認相手が「誰」であるかを確かめること。</li>
+<li>認可：確認相手が「何」をできるかを定めること。</li>
+</ul>
+<p>今回は「何」ができるか、つまり認可について基本的な事項をまとめていきます。
+特にポリシーとの違いも意識しながら理解しましょう。</p>
+<h2 id="3iamロールとは">3.IAMロールとは</h2>
+<p>IAMロールはIAMアイデンティティの1つで、割り当てられたアイデンティティがアクセス許可や拒否といった権限を持つことができます。
+ここまではポリシーと同じですが、違いとしてロールは特定のユーザやアカウントに紐づくものではなく、必要な時に引き受ける、という意味合いがあります。
+またその利用対処もリソースや他AWSアカウントが対象となります。</p>
+<p>またポリシーのようにインラインポリシーとしてjson形式で個別の権限を記載することもできますが、多くはすでに定義しているポリシーを割り当てます。つまり、ポリシーのグルーピングすることができます。</p>
+<p>分かりづらいため、イメージ図を見てみましょう。
+なお、ここでは同一AWSアカウント内に閉じた場合で整理しています。マルチアカウント、クロスアカウントはまたの機会にします。</p>
+<p><img src="https://monochlog.github.io/monochlog-blog/img/iam/iam-04.jpg" alt="ポリシーとロール"></p>
+<p>表.ポリシーとロールの違い</p>
+<table>
+<thead>
+<tr>
+<th>分類</th>
+<th>割り当て先</th>
+<th>用途</th>
+<th>定義方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ポリシー</td>
+<td>ユーザまたはグループ（同一AWSアカウント内）</td>
+<td>権限の割り当て</td>
+<td>AWS管理ポリシーなどのjson</td>
+</tr>
+<tr>
+<td>ロール</td>
+<td>リソースまたは他アカウントのユーザ、グループ</td>
+<td>権限の割り当て</td>
+<td>ポリシーの割り当て</td>
+</tr>
+</tbody>
+</table>
+<p>つまるところ以下のイメージがよいと思います。</p>
+<p>　ポリシー：自AWSアカウントのグループの権限を割り当てるためのもの<br>
+　ロール：ポリシーをまとめるためのもの<br>
+　　　　　自AWSアカウントのリソースへの権限を割り当てるもの<br>
+　　　　　他AWSアカウントのユーザ、グループへの権限を割り当てるもの</p>
+<h2 id="4iamロールの認証">4.IAMロールの認証</h2>
+<p>前述の通り、ロールは自分のユーザやグループではなく、リソースや他アカウントのユーザ、グループに権限を付与するものです。</p>
+<p>このとき、ユーザは基本的にログインIDやMFAによって認証がされていますが、リソースや他アカウントは認証をしていません。</p>
+<p>そこで利用するのがAWS STS(Security Token Service)です。ユーザがIDとパスワードで認証するように、IAMロールを利用するリソースはSTSに一時的なセキュリティ認証情報（アクセスキー、シークレットアクセスキー、セキュリティトークン）を発行してもらい、権限を行使します。</p>
+<p><img src="https://monochlog.github.io/monochlog-blog/img/iam/iam-05.jpg" alt="IAMロールの認証"></p>
+<p>アプリケーションは準備されているAPIを利用して上記の認証を行い、ロールを利用した処理を行います。APIについては別途にしましょう。</p>
+<h2 id="5まとめ">5.まとめ</h2>
+<p>ロールについてポリシーの都の違いやをメインに整理しました。次回はクロスアカウントや他IDプロバイダのユーザへの権限付与など応用的な内容をまとめます。</p>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://monochlog.github.io/monochlog-blog/tags/aws-iam/">AWS IAM</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://monochlog.github.io/monochlog-blog/post/iam-02/">
+            <span class="next-text nav-default">IAM入門 ポリシー編</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'https-monochlog-github-io-monochlog-blog';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:monochlog7@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/monochlog" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/monochlog/mono-repo" class="iconfont icon-github" title="github"></a>
+  <a href="https://monochlog.github.io/monochlog-blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2021　
+    <span>Mono
+      |　<a href="https://forms.gle/GitXDK59q3pskQdx5">Form</a>
+    </span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="https://monochlog.github.io/monochlog-blog/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-132831922-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
