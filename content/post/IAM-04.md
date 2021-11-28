@@ -1,7 +1,7 @@
 ---
 title: "IAM クロスアカウント編"
-date: 2021-11-29T13:27:12+00:00
-lastmod: 2021-11-29T13:27:12+00:00
+date: 2021-11-28T21:27:12+09:00
+lastmod: 2021-11-28T21:27:12+09:00
 draft: false
 keywords: []
 description: ""

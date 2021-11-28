@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>IAM入門 ロール編 - Monochlog</title>
+  <title>IAM クロスアカウント編 - Monochlog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.88.1 with theme even" />
 
 
-<link rel="canonical" href="https://monochlog.github.io/monochlog-blog/post/iam-03/" />
+<link rel="canonical" href="https://monochlog.github.io/monochlog-blog/post/iam-04/" />
 <link rel="apple-touch-icon" sizes="180x180" href="https://monochlog.github.io/monochlog-blog/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://monochlog.github.io/monochlog-blog/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://monochlog.github.io/monochlog-blog/favicon-16x16.png">
@@ -39,19 +39,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="IAM入門 ロール編" />
+<meta property="og:title" content="IAM クロスアカウント編" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://monochlog.github.io/monochlog-blog/post/iam-03/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-11-28T16:22:41+09:00" />
-<meta property="article:modified_time" content="2021-11-28T16:22:41+09:00" />
+<meta property="og:url" content="https://monochlog.github.io/monochlog-blog/post/iam-04/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-11-28T21:27:12+09:00" />
+<meta property="article:modified_time" content="2021-11-28T21:27:12+09:00" />
 
-<meta itemprop="name" content="IAM入門 ロール編">
-<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-11-28T16:22:41+09:00" />
-<meta itemprop="dateModified" content="2021-11-28T16:22:41+09:00" />
-<meta itemprop="wordCount" content="1385">
+<meta itemprop="name" content="IAM クロスアカウント編">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-11-28T21:27:12+09:00" />
+<meta itemprop="dateModified" content="2021-11-28T21:27:12+09:00" />
+<meta itemprop="wordCount" content="1930">
 <meta itemprop="keywords" content="AWS IAM," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="IAM入門 ロール編"/>
+<meta name="twitter:title" content="IAM クロスアカウント編"/>
 <meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
@@ -133,7 +133,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">IAM入門 ロール編</h1>
+      <h1 class="post-title">IAM クロスアカウント編</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2021-11-28 </span>
@@ -152,9 +152,16 @@
     <li>
       <ul>
         <li><a href="#1はじめに">1.はじめに</a></li>
-        <li><a href="#2iamとは">2.IAMとは</a></li>
-        <li><a href="#3iamロールとは">3.IAMロールとは</a></li>
-        <li><a href="#4iamロールの認証">4.IAMロールの認証</a></li>
+        <li><a href="#2マルチアカウント">2.マルチアカウント</a>
+          <ul>
+            <li><a href="#アカウントを分ける理由">アカウントを分ける理由</a></li>
+            <li><a href="#アカウント間でアクセスを許可する理由">アカウント間でアクセスを許可する理由</a></li>
+            <li><a href="#ジャンプアカウント">ジャンプアカウント</a></li>
+            <li><a href="#他のアカウント">他のアカウント</a></li>
+          </ul>
+        </li>
+        <li><a href="#3他idプロバイダからのフェデレーション">3.他IDプロバイダからのフェデレーション</a></li>
+        <li><a href="#4ロールによる権限委任のメリット">4.ロールによる権限委任のメリット</a></li>
         <li><a href="#5まとめ">5.まとめ</a></li>
       </ul>
     </li>
@@ -164,66 +171,54 @@
 </div>
     <div class="post-content">
       <h2 id="1はじめに">1.はじめに</h2>
-<p>前回の<a href="https://monochlog.github.io/monochlog-blog/post/iam-02">IAM入門 認可(ポリシー編)</a>をまとめてきましたが、今回はIAMロールについてまとめていきます。</p>
-<h2 id="2iamとは">2.IAMとは</h2>
-<p>改めてIAMとは何かというと公式から引用します。</p>
-<blockquote>
-<p>AWS Identity and Access Management (IAM) は、AWS リソースへのアクセスを安全に管理するためのウェブサービスです。IAM により、誰を認証 (サインイン) し、誰にリソースの使用を承認する (アクセス権限を持たせる) かを制御します。</p>
-</blockquote>
-<p>かいつまむと、「誰」と「権限」を定義するサービスです。多くの場合認証と認可という表現がされます。それらを定義していく機能になります。</p>
-<p>ちなみに認証と認可は以下の通り。</p>
-<ul>
-<li>認証：確認相手が「誰」であるかを確かめること。</li>
-<li>認可：確認相手が「何」をできるかを定めること。</li>
-</ul>
-<p>今回は「何」ができるか、つまり認可について基本的な事項をまとめていきます。
-特にポリシーとの違いも意識しながら理解しましょう。</p>
-<h2 id="3iamロールとは">3.IAMロールとは</h2>
-<p>IAMロールはIAMアイデンティティの1つで、割り当てられたアイデンティティがアクセス許可や拒否といった権限を持つことができます。
-ここまではポリシーと同じですが、違いとしてロールは特定のユーザやアカウントに紐づくものではなく、必要な時に引き受ける、という意味合いがあります。
-またその利用対処もリソースや他AWSアカウントが対象となります。</p>
-<p>またポリシーのようにインラインポリシーとしてjson形式で個別の権限を記載することもできますが、多くはすでに定義しているポリシーを割り当てます。つまり、ポリシーのグルーピングすることができます。</p>
-<p>分かりづらいため、イメージ図を見てみましょう。
-なお、ここでは同一AWSアカウント内に閉じた場合で整理しています。マルチアカウント、クロスアカウントはまたの機会にします。</p>
-<p><img src="https://monochlog.github.io/monochlog-blog/img/iam/iam-04.jpg" alt="ポリシーとロール"></p>
-<p>表.ポリシーとロールの違い</p>
-<table>
-<thead>
-<tr>
-<th>分類</th>
-<th>割り当て先</th>
-<th>用途</th>
-<th>定義方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ポリシー</td>
-<td>ユーザまたはグループ（同一AWSアカウント内）</td>
-<td>権限の割り当て</td>
-<td>AWS管理ポリシーなどのjson</td>
-</tr>
-<tr>
-<td>ロール</td>
-<td>リソースまたは他アカウントのユーザ、グループ</td>
-<td>権限の割り当て</td>
-<td>ポリシーの割り当て</td>
-</tr>
-</tbody>
-</table>
-<p>つまるところ以下のイメージがよいと思います。</p>
-<p>　ポリシー：自AWSアカウントのグループの権限を割り当てるためのもの<br>
-　ロール：ポリシーをまとめるためのもの<br>
-　　　　　自AWSアカウントのリソースへの権限を割り当てるもの<br>
-　　　　　他AWSアカウントのユーザ、グループへの権限を割り当てるもの</p>
-<h2 id="4iamロールの認証">4.IAMロールの認証</h2>
-<p>前述の通り、ロールは自分のユーザやグループではなく、リソースや他アカウントのユーザ、グループに権限を付与するものです。</p>
-<p>このとき、ユーザは基本的にログインIDやMFAによって認証がされていますが、リソースや他アカウントは認証をしていません。</p>
-<p>そこで利用するのがAWS STS(Security Token Service)です。ユーザがIDとパスワードで認証するように、IAMロールを利用するリソースはSTSに一時的なセキュリティ認証情報（アクセスキー、シークレットアクセスキー、セキュリティトークン）を発行してもらい、権限を行使します。</p>
-<p><img src="https://monochlog.github.io/monochlog-blog/img/iam/iam-05.jpg" alt="IAMロールの認証"></p>
-<p>アプリケーションは準備されているAPIを利用して上記の認証を行い、ロールを利用した処理を行います。APIについては別途にしましょう。</p>
+<p>今回はIAMの中でも自AWSアカウントではなく、他AWSアカウントや他のIDプロバイダ（facebookやgoogleなど）のユーザの活用という話になります。</p>
+<p>結構細かい内容が多いですが、基本的にBlackBeltの説明をベースに嚙み砕いていくことにします。</p>
+<h2 id="2マルチアカウント">2.マルチアカウント</h2>
+<p>そもそも、マルチアカウントにする理由です。</p>
+<p>BlackBeltにあるユースケースを見ながら説明していきます。
+<img src="https://monochlog.github.io/monochlog-blog/img/iam/iam-06.jpg" alt="マルチアカウントのユースケース"></p>
+<h3 id="アカウントを分ける理由">アカウントを分ける理由</h3>
+<p>システム開発を行っていくうえで、経験はあるかもしれません。</p>
+<p>本番環境は多くの場合リリースをしてから多数のユーザが利用しており、気軽にシステム停止やデプロイなどができないことが多いです。また開発は複数の機能改修などが変更して行われており、頻繁なデプロイがあります。</p>
+<p>このとき1つのアカウント（またはIAMユーザ）で実施していた場合、操作ミスなどにより意図しない環境への操作を行ってしまう可能性があります。</p>
+<p>そこで、アカウントを分ける、という考え方になります。</p>
+<h3 id="アカウント間でアクセスを許可する理由">アカウント間でアクセスを許可する理由</h3>
+<p>環境単位での権限を分けるためにアカウントを分けた場合、作業の度にログインをし直す手間や、検証環境で試験した資材を本番環境に持ち込むことができない、という制約もついてしまいます。
+また、単純に分けただけでは各アカウントでIAMユーザを作り、かつ、権限を管理する、という手間も雪だるま式に増えていってしまいます。</p>
+<p>そこで信用可能なアカウントやユーザやリソースに対しては自アカウントのリソースへの操作を許可する権限を与える、という仕組みをとります。</p>
+<p>これがロールを用いたクロスアカウントの基本的な考えになります。</p>
+<p>##クロスアカウント
+さて、改めてBlackBeltにあるユースケースをに戻ります。
+マルチアカウントを用いたクロスアカウント方針、、と記載すると似た言葉が続きますが、ほぼ同義だと思って構いません。</p>
+<p><img src="https://monochlog.github.io/monochlog-blog/img/iam/iam-06.jpg" alt="マルチアカウントのユースケース"></p>
+<p>このユースケースが示していることを噛み砕いていこうと思います。</p>
+<h3 id="ジャンプアカウント">ジャンプアカウント</h3>
+<p>このジャンプアカウントはユーザを作成し、管理する専用のアカウントです。このアカウント内だけにIAMユーザを作成することを指しています。</p>
+<p>またジャンプアカウントから他のアカウントへのアクセスが同時ユーザから出ている通り、1人1人が１つのアカウントだけを利用し、他のアカウントにはロールを付与されて操作をする、という形をとります。</p>
+<p>ちなみに各ユーザは「Swtich Role」を行うことで再ログインなどを不要で必要な時に必要な権限に切り替えることが可能です。</p>
+<h3 id="他のアカウント">他のアカウント</h3>
+<p>他のアカウントは絵の通り、ジャンプアカウントのアカウントからの操作を許可します。そのため、まずジャンプアカウント以外にはIAMユーザの定義はありません。</p>
+<p>代わりにロールを作成し、ジャンプアカウントのIAMユーザに対してロールの割り当てをする設定「信頼ポリシー」を設定します。
+信頼ポリシーとは簡単にいうと、「このロールを割り当ててよい人、リソース」になります。</p>
+<p>この設定がないと誰でもロールを割り当てる（正しくは引き受ける）ことができてしまうため、ジャンプアカウントの特定IAMユーザ、グループへ引き受けを許可します。</p>
+<h2 id="3他idプロバイダからのフェデレーション">3.他IDプロバイダからのフェデレーション</h2>
+<p>マルチアカウントは他AWSアカウントからの利用をする権限の話でした。またそれ以外にもAWSでは他IDプロバイダからのフェデレーション（認証連携）を行うことが可能です。</p>
+<p>他IDプロバイダとは具体的には以下のようなものを指します。</p>
+<ol>
+<li>FaceBookやGoogle,MicrosoftなどAWSと連携が認められているパートナーソリューション</li>
+<li>SAML2.0に準拠したフェデレーション</li>
+</ol>
+<p>補足としてIDプロバイダとの連携にはワンクッションあり、認証を行うための受け口が複数パターンあります。</p>
+<p>例えばSSOエンドポイント、Cognito、またAWS CLIなどが該当します。これらの利用方法を内部的に知っていることが大前提となり、その上でユーザ、またはリソースとしてフェデレーションをします。</p>
+<h2 id="4ロールによる権限委任のメリット">4.ロールによる権限委任のメリット</h2>
+<p>ここまで見てきましたクロスアカウント等によるロールによる権限のメリットをまとめます。</p>
+<ol>
+<li>EC2上などで利用するアクセスキーの管理が数を減らすことができ、容易になる。</li>
+<li>認証情報がSTSで自動的に生成でき、かつ時限式となるためセキュリティが高い</li>
+<li>認証情報の外部漏洩リスクを低減できる</li>
+</ol>
 <h2 id="5まとめ">5.まとめ</h2>
-<p>ロールについてポリシーの都の違いやをメインに整理しました。次回はクロスアカウントや他IDプロバイダのユーザへの権限付与など応用的な内容をまとめます。</p>
+<p>マルチアカウントで利用可能なクロスアカウントとしてロールによる権限委任についてまとめました。今回記載した内容は概要ですが、実装にあたってはここまで理解しておくとスムーズになると思います。</p>
     </div>
 
     
@@ -232,13 +227,9 @@
           <a href="https://monochlog.github.io/monochlog-blog/tags/aws-iam/">AWS IAM</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="https://monochlog.github.io/monochlog-blog/post/iam-04/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">IAM クロスアカウント編</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="https://monochlog.github.io/monochlog-blog/post/iam-02/">
-            <span class="next-text nav-default">IAM入門 ポリシー編</span>
+        
+        <a class="next" href="https://monochlog.github.io/monochlog-blog/post/iam-03/">
+            <span class="next-text nav-default">IAM入門 ロール編</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
