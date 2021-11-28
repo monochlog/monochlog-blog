@@ -1,8 +1,8 @@
 ---
 title: "IAM入門 ロール"
-date: 2021-11-26T16:22:41+09:00
-lastmod: 2021-11-26T16:22:41+09:00
-draft: true
+date: 2021-11-28T16:22:41+00:00
+lastmod: 2021-11-28T16:22:41+00:00
+draft: false
 keywords: []
 description: ""
 tags: ["AWS IAM"]
