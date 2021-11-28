@@ -2,16 +2,7 @@
 <article class="post">
   <div class="post-content">
     {{.Content}}
+    {{ partial "related.html" . }}
   </div>
 </article>
 {{- end }}
-
-{{ $related := .Site.RegularPages.Related . | first 4 }}
-{{ with $related }}
-  <h3>See Also</h3>
-  <ul>
-    {{ range . }}
-      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-    {{ end }}
-  </ul>
-{{ end }}
