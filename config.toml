@@ -1,6 +1,6 @@
 baseURL = "https://monochlog.github.io/monochlog-blog/"
-languageCode = "en"
-defaultContentLanguage = "en"                             # en / zh-cn / ... (This field determines which i18n file to use)
+languageCode = "ja"
+defaultContentLanguage = "ja"                             # en / zh-cn / ... (This field determines which i18n file to use)
 title = "Monochlog"
 preserveTaxonomyNames = true
 enableRobotsTXT = true
