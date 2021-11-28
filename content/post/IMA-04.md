@@ -5,8 +5,8 @@ lastmod: 2021-11-29T13:27:12+00:00
 draft: true
 keywords: []
 description: ""
-tags: []
-categories: []
+tags: ["AWS IAM"]
+categories: ["AWS"]
 author: "Mono"
 
 # You can also close(false) or open(true) something for this content.
