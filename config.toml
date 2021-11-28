@@ -230,8 +230,8 @@ copyright = ""            # default: author.name ↓
 #  taxonomyTerm = ["HTML"]
 
 [related]
-  includeNewer = false
-  threshold = 80
+  includeNewer = true
+  threshold = 50
   toLower = false
 
   [[related.indices]]
