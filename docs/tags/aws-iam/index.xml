@@ -6,16 +6,7 @@
     <description>Recent content in AWS IAM on Monochlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 28 Nov 2021 16:22:41 +0900</lastBuildDate><atom:link href="https://monochlog.github.io/monochlog-blog/tags/aws-iam/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>IAM入門 ロール編</title>
-      <link>https://monochlog.github.io/monochlog-blog/post/iam-03/</link>
-      <pubDate>Sun, 28 Nov 2021 16:22:41 +0900</pubDate>
-      
-      <guid>https://monochlog.github.io/monochlog-blog/post/iam-03/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Fri, 26 Nov 2021 10:50:47 +0900</lastBuildDate><atom:link href="https://monochlog.github.io/monochlog-blog/tags/aws-iam/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IAM入門 ポリシー編</title>
       <link>https://monochlog.github.io/monochlog-blog/post/iam-02/</link>
